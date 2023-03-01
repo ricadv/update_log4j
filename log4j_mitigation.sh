@@ -14,6 +14,12 @@ newapi2=log4j-1.2-api-2.20.0.jar
 git_backup_repo=/home/ubuntu/backup_config_files/${HOSTNAME}
 mkdir "$git_backup_repo"
 
+# download and extract updated jar files
+wget https://downloads.apache.org/logging/log4j/2.20.0/apache-log4j-2.20.0-bin.tar.gz
+mkdir log4j_binaries
+tar -xf apache-log4j-2.20.0-bin.tar.gz -C log4j_binaries
+rm apache-log4j-2.20.0-bin.tar.gz
+
 # finding old jar files that needs updating
 sudo find / -type f \( -name 'log4j-core-*' -o -name 'log4j-api-*' -o -name 'log4j-1.2-api-*' \) ! -path '*/log4j_binaries/*' ! -path '*/backup_config_files/*' > log4jfiles.txt
 
